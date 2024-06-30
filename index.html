@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Sorteador Euro 2024</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <img src="img/euro.png" alt="EURO 2024 Logo" class="euro-logo" />
+        <div class="lists-container">
+          <div class="list">
+            <div class="input-group">
+              <input
+                type="text"
+                id="jogadorInput"
+                placeholder="Nomes dos jogadores"
+              />
+              <button class="add-btn" onclick="adicionarJogadores()">
+                Adicionar
+              </button>
+            </div>
+            <ul id="jogadoresList"></ul>
+            <button class="sort-btn" onclick="sortearJogador()">
+              Sortear Jogador
+            </button>
+          </div>
+
+          <div class="list">
+            <div class="input-group">
+              <input
+                type="text"
+                id="selecaoInput"
+                placeholder="Nomes das seleções"
+              />
+              <button class="add-btn" onclick="adicionarSelecoes()">
+                Adicionar
+              </button>
+            </div>
+            <ul id="selecoesList"></ul>
+            <button class="sort-btn" onclick="sortearSelecao()">
+              Sortear Seleção
+            </button>
+          </div>
+        </div>
+
+        <table id="resultadoTable" style="display: none">
+          <thead>
+            <tr>
+              <th>Jogador</th>
+              <th>Seleção</th>
+            </tr>
+          </thead>
+          <tbody id="resultadoBody"></tbody>
+        </table>
+
+        <button class="sort-btn" onclick="reiniciarSorteio()">Reiniciar</button>
+      </div>
+    </div>
+
+    <script src="js/index.js"></script>
+  </body>
+</html>

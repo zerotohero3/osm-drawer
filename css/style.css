@@ -1,0 +1,282 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+:root {
+  --primary-color: #1f47dd;
+  --secondary-color: #ffffff;
+  --background-color: #11151d;
+  --text-color: #ffffff;
+  --accent-color: #ff4136;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    var(--background-color),
+    var(--background-color),
+    var(--primary-color),
+    var(--accent-color)
+  );
+  background-size: 400% 400%;
+  animation: gradientAnimation 20s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.content {
+  position: relative;
+  padding: 40px;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.lists-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.list {
+  width: 48%;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 12px;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #cccccca2;
+  color: var(--text-color);
+  outline: none;
+}
+
+input[type="text"]::placeholder {
+  color: #cccccca2;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #0f37ca;
+  transform: translateY(-2px);
+}
+
+.add-btn {
+  border-radius: 0 50px 50px 0;
+}
+
+.sort-btn {
+  display: block;
+  width: 200px;
+  margin: 30px auto;
+  border-radius: 50px;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.sort-btn:hover {
+  background: #0f37ca;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+}
+
+li {
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.remove-btn {
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.remove-btn:hover {
+  background-color: #b41911;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  margin-top: 30px;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+th {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+tr {
+  transition: transform 0.3s ease;
+}
+
+tr:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .lists-container {
+    flex-direction: column;
+  }
+
+  .list {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+
+.euro-logo {
+  width: 250px;
+  height: auto;
+  margin: 0 auto 40px;
+  display: block;
+}
+
+@media (min-width: 769px) {
+  ::-webkit-scrollbar {
+    width: 12px; /* Largura da scrollbar vertical */
+    height: 12px; /* Altura da scrollbar horizontal */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05); /* Cor do track */
+    border-radius: 10px; /* Bordas arredondadas do track */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #4d556870; /* Cor do thumb */
+    border-radius: 10px; /* Bordas arredondadas do thumb */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #374057; /* Cor do thumb ao passar o mouse */
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 15px;
+  }
+
+  .euro-logo {
+    width: 170px;
+  }
+
+  input[type="text"],
+  button {
+    font-size: 14px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 1200px) {
+  body::before {
+    background-size: 300% 300%;
+  }
+}
+
+@media (max-width: 992px) {
+  body::before {
+    background-size: 250% 250%;
+  }
+}
+
+@media (max-width: 768px) {
+  body::before {
+    background-size: 200% 200%;
+  }
+}
