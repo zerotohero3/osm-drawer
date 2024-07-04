@@ -75,7 +75,29 @@ function removerItem(listId, index) {
   }
 }
 
-function sortearJogador() {
+function mostrarLoading() {
+  const loadingOverlay = document.createElement("div");
+  loadingOverlay.classList.add("loading-overlay");
+  loadingOverlay.innerHTML =
+    '<img src="img/footballw.png" class="ball-loading fa-spin"/>';
+  document.body.appendChild(loadingOverlay);
+}
+
+function esconderLoading() {
+  const loadingOverlay = document.querySelector(".loading-overlay");
+  if (loadingOverlay) {
+    loadingOverlay.remove();
+  }
+}
+
+async function sortearComLoading(funcaoSorteio) {
+  mostrarLoading();
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+  funcaoSorteio();
+  esconderLoading();
+}
+
+async function sortearJogador() {
   if (jogadores.length === 0) {
     alert("Adicione pelo menos um jogador antes de realizar o sorteio.");
     return;
@@ -86,26 +108,28 @@ function sortearJogador() {
     return;
   }
 
-  let jogadorSorteado;
-  do {
-    jogadorSorteado = jogadores[Math.floor(Math.random() * jogadores.length)];
-  } while (jogadoresSorteados.includes(jogadorSorteado));
+  await sortearComLoading(() => {
+    let jogadorSorteado;
+    do {
+      jogadorSorteado = jogadores[Math.floor(Math.random() * jogadores.length)];
+    } while (jogadoresSorteados.includes(jogadorSorteado));
 
-  jogadoresSorteados.push(jogadorSorteado);
+    jogadoresSorteados.push(jogadorSorteado);
 
-  if (
-    resultados.length > 0 &&
-    resultados[resultados.length - 1].jogador === null
-  ) {
-    resultados[resultados.length - 1].jogador = jogadorSorteado;
-  } else {
-    resultados.push({ jogador: jogadorSorteado, selecao: null });
-  }
+    if (
+      resultados.length > 0 &&
+      resultados[resultados.length - 1].jogador === null
+    ) {
+      resultados[resultados.length - 1].jogador = jogadorSorteado;
+    } else {
+      resultados.push({ jogador: jogadorSorteado, selecao: null });
+    }
 
-  atualizarTabela();
+    atualizarTabela();
+  });
 }
 
-function sortearSelecao() {
+async function sortearSelecao() {
   if (selecoes.length === 0) {
     alert("Adicione pelo menos uma seleção antes de realizar o sorteio.");
     return;
@@ -116,23 +140,25 @@ function sortearSelecao() {
     return;
   }
 
-  let selecaoSorteada;
-  do {
-    selecaoSorteada = selecoes[Math.floor(Math.random() * selecoes.length)];
-  } while (selecoesSorteadas.includes(selecaoSorteada));
+  await sortearComLoading(() => {
+    let selecaoSorteada;
+    do {
+      selecaoSorteada = selecoes[Math.floor(Math.random() * selecoes.length)];
+    } while (selecoesSorteadas.includes(selecaoSorteada));
 
-  selecoesSorteadas.push(selecaoSorteada);
+    selecoesSorteadas.push(selecaoSorteada);
 
-  if (
-    resultados.length > 0 &&
-    resultados[resultados.length - 1].selecao === null
-  ) {
-    resultados[resultados.length - 1].selecao = selecaoSorteada;
-  } else {
-    resultados.push({ jogador: null, selecao: selecaoSorteada });
-  }
+    if (
+      resultados.length > 0 &&
+      resultados[resultados.length - 1].selecao === null
+    ) {
+      resultados[resultados.length - 1].selecao = selecaoSorteada;
+    } else {
+      resultados.push({ jogador: null, selecao: selecaoSorteada });
+    }
 
-  atualizarTabela();
+    atualizarTabela();
+  });
 }
 
 function atualizarTabela() {

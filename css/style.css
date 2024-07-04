@@ -129,6 +129,7 @@ button:hover {
   background: var(--primary-color);
   color: var(--secondary-color);
   font-weight: bold;
+  cursor: pointer;
 }
 
 .sort-btn:hover {
@@ -200,6 +201,43 @@ tr:hover {
   transform: scale(1.02);
 }
 
+.euro-logo {
+  width: 250px;
+  height: auto;
+  margin: 0 auto 40px;
+  display: block;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.ball-loading {
+  width: 75px;
+}
+
+.fa-spin {
+  animation: fa-spin 1.8s infinite linear;
+}
+
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 768px) {
   .lists-container {
     flex-direction: column;
@@ -209,13 +247,6 @@ tr:hover {
     width: 100%;
     margin-bottom: 30px;
   }
-}
-
-.euro-logo {
-  width: 250px;
-  height: auto;
-  margin: 0 auto 40px;
-  display: block;
 }
 
 @media (min-width: 769px) {
